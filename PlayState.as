@@ -19,6 +19,9 @@ package
 		public var bucket1:Bucket;
 		public var bucket2:Bucket;
 		
+		public var score1:FlxText;
+		public var score2:FlxText;
+		
 		protected const _bloom:uint = 6;	//How much light bloom to have - larger numbers = more
 		protected var _fx:FlxSprite;		//Our helper sprite - basically a mini screen buffer (see below)
 		
@@ -73,13 +76,11 @@ package
 
 				FlxG.watch(laser2, "currentDirection");
 				
-/*			score1 = new FlxText(100 , 100, 100, "SCORE: 0");
+			score1 = new FlxText(100, 100, 100, "SCORE: 0");
 			add(score1);
 			
 			score2 = new FlxText(500, 100, 100, "SCORE: 0");
-			add(score2);*/
-
-				
+			add(score2);
 		}
 		
 		override public function update():void
@@ -124,6 +125,9 @@ package
 			{
 				bucket1.fullness += 1;
 			}
+			
+			score1.text = "" + bucket1.fullness;
+			score2.text = "" + bucket2.fullness;
 			
 			super.update();
 		}
