@@ -6,10 +6,11 @@ package
 	{
 		public var fullness:int;
 		
-		public function Bucket(X:int, Y:int)
+		public function Bucket(X:int, Y:int, SimpleGraphic:Class = null)
 		{
 			super(X, Y);
-			makeGraphic(20, 24, 0xffaa1111);
+			loadGraphic(SimpleGraphic, true, false, 100, 500);
+			this.offset = new FlxPoint(50, 25);
 		}
 	}
 }

@@ -27,6 +27,10 @@ package
 		
 		[Embed(source="assets/droopyLaser_blue.png")] private var ImgBlueChar:Class;
 		[Embed(source="assets/droopyLaser_red.png")] private var ImgRedChar:Class;
+		
+		[Embed(source="assets/bucket_blue.png")] private var ImgBlueBucket:Class;
+		[Embed(source="assets/bucket_red.png")] private var ImgRedBucket:Class;
+		
 		[Embed(source="assets/background.png")] private var ImgBkg:Class;
 		
 		[Embed(source="assets/gameloop.mp3")] private var SndGameLoop:Class;
@@ -58,9 +62,9 @@ package
 				laser1 = new LaserCurve(new FlxPoint(80, 240), 0x02b2ff, ImgBlueChar);
 				add(laser1);
 				
-				bucket1 = new Bucket(FlxG.width/3, 320);
+				bucket1 = new Bucket(FlxG.width * 2/3, 360, ImgBlueBucket);
 				add(bucket1);
-				bucket2 = new Bucket(FlxG.width * 2/3, 320);
+				bucket2 = new Bucket(FlxG.width * 1/3, 360, ImgRedBucket);
 				add(bucket2);
 				laser2 = new LaserCurve(new FlxPoint(620, 240), 0xff0258, ImgRedChar, true);
 				add(laser2);

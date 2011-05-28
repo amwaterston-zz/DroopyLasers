@@ -81,7 +81,7 @@ package
 				
 				var d:Number = Math.sqrt( Math.pow(c.x - point.x, 2) + Math.pow(c.y - point.y, 2));
 				FlxG.log("d: " + d + ", i: " + i)
-				if (d < 10)
+				if (d < 30)
 				{
 					return true;
 				}
