@@ -14,10 +14,14 @@ package
 		public var currentPower:Number;
 		public var currentDirection:Number;
 
-        function LaserCurve(location:FlxPoint, SimpleGraphic:Class = null) 
+        function LaserCurve(location:FlxPoint, SimpleGraphic:Class = null, flipped:Boolean = false) 
 		{
-			super(location.x-50, location.y-56);
-			loadGraphic(SimpleGraphic, true, false, 90);
+			var offsetx = 50;
+			if(flipped){
+				offsetx = 30;
+			}
+			super(location.x-offsetx, location.y-56);
+			loadGraphic(SimpleGraphic, true, flipped, 90);
 			this.location = location;
 			this.direction = 0;
 			this.currentDirection = 0;
@@ -81,10 +85,16 @@ package
 				currentDirection += 5;
 			else if (currentDirection > direction)
 				currentDirection -= 5;
-
+			currentDirection = currentDirection%360;
 			// figure out the frame to play
-			frame = 6-((currentDirection+45)/90)*6;
-				
+			if(currentDirection + 45 > 0 && currentDirection + 45 < 90){
+				frame = 6-((currentDirection+45)/90)*6;
+				facing = RIGHT;
+			}else if(currentDirection + 45 > 180 && currentDirection + 45 < 360){
+				frame = ((currentDirection-135)/90)*6;
+				facing = LEFT;
+			}
+			
 			super.update();
 		}
     }

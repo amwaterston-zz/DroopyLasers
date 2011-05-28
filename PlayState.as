@@ -47,7 +47,7 @@ package
 				add(bucket1);
 				bucket2 = new Bucket(FlxG.width * 2/3, 320);
 				add(bucket2);
-				laser2 = new LaserCurve(new FlxPoint(640, 320), ImgRedChar);
+				laser2 = new LaserCurve(new FlxPoint(620, 320), ImgRedChar, true);
 				add(laser2);
 				laser2.direction = 180;
 				
@@ -58,6 +58,8 @@ package
 				FlxG.watch(this, "amp1");
 				FlxG.watch(laser1, "power");
 				FlxG.watch(laser1, "currentPower");
+
+				FlxG.watch(laser2, "currentDirection");
 		}
 		
 		override public function update():void
