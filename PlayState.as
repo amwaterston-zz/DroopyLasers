@@ -1,3 +1,4 @@
+/*mxmlc HelloWorld.as -compiler.include-libraries ./OSCConnector-0_6_1.swc -static-link-runtime-shared-libraries=true*/
 package
 {
 	import org.flixel.*;
