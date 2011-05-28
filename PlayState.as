@@ -19,20 +19,25 @@ package
 		public var bucket1:Bucket;
 		public var bucket2:Bucket;
 		
-		public var score1:FlxText;
-		public var score2:FlxText;
-		
 		[Embed(source="assets/droopyLaser_blue.png")] private var ImgBlueChar:Class;
 		[Embed(source="assets/droopyLaser_red.png")] private var ImgRedChar:Class;
 		
+		[Embed(source="assets/gameloop.mp3")] private var SndGameLoop:Class;
+		[Embed(source="assets/menu.mp3")] private var SndMenu:Class;
+		[Embed(source="assets/laser_bucket.mp3")] private var SndBucket:Class;
+		[Embed(source="assets/nearly_full.mp3")] private var SndNearFull:Class;
+		[Embed(source="assets/win.mp3")] private var SndWin:Class;
+
 		override public function create():void
 		{
+			FlxG.playMusic(SndGameLoop);
+			
 			osc = new OSCConnection("127.0.0.1", 9001);
 			osc.addEventListener(OSCConnectionEvent.OSC_PACKET_IN, oscIn);
 			osc.connect("127.0.0.1", 9001);
 			amp1 = amp2 = pitch1 = pitch2 = 0;
 			
-			FlxG.bgColor = 0xffd0d0d0;
+			FlxG.bgColor = 0xff000000;
 			
 				
 				player = new FlxSprite(FlxG.width/2 - 5);
@@ -43,14 +48,14 @@ package
 				player.drag.x = player.maxVelocity.x * 4;
 				//add(player);
 				
-				laser1 = new LaserCurve(new FlxPoint(80, 240));
+				laser1 = new LaserCurve(new FlxPoint(80, 240), 0x02b2ff, ImgBlueChar);
 				add(laser1);
 				
 				bucket1 = new Bucket(FlxG.width/3, 320);
 				add(bucket1);
 				bucket2 = new Bucket(FlxG.width * 2/3, 320);
 				add(bucket2);
-				laser2 = new LaserCurve(new FlxPoint(620, 240));
+				laser2 = new LaserCurve(new FlxPoint(620, 240), 0xff0258, ImgRedChar, true);
 				add(laser2);
 				laser2.direction = 180;
 				
@@ -69,6 +74,17 @@ package
 			
 			score2 = new FlxText(500, 100, 100, "SCORE: 0");
 			add(score2);*/
+				_fx = new FlxSprite();
+				_fx.makeGraphic(FlxG.width/_bloom,FlxG.height/_bloom,0,true);
+				_fx.setOriginToCorner();	//Zero out the origin so scaling goes from top-left, not from center
+				_fx.scale.x = _bloom;		//Scale it up to be the same size as the screen again
+				_fx.scale.y = _bloom;		//Scale it up to be the same size as the screen again
+				_fx.antialiasing = true;	//Set AA to true for maximum blurry
+				_fx.blend = "screen";		//Set blend mode to "screen" to make the blurred copy transparent and brightening
+				
+				FlxG.camera.screen.scale.x = 1/_bloom;
+				FlxG.camera.screen.scale.y = 1/_bloom;
+				
 		}
 		
 		override public function update():void
@@ -116,7 +132,13 @@ package
 			
 			super.update();
 		}
-		
+		override public function draw():void
+		{
+			super.draw();
+			_fx.stamp(FlxG.camera.screen);
+			_fx.draw();
+			
+		}
 		public function oscIn(e:OSCConnectionEvent):void
 		{
 			for (var i:int = 0; i < e.data.messages.length; i++)

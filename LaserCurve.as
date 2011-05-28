@@ -13,9 +13,10 @@ package
 		public var power:Number;
 		public var currentPower:Number;
 		public var currentDirection:Number;
-
-        function LaserCurve(location:FlxPoint, SimpleGraphic:Class = null, flipped:Boolean = false) 
+		public var Color:uint;
+        function LaserCurve(location:FlxPoint, Color:uint, SimpleGraphic:Class = null, flipped:Boolean = false) 
 		{
+			
 			var offsetx = 50;
 			if(flipped){
 				offsetx = 30;
@@ -27,6 +28,7 @@ package
 			this.currentDirection = 0;
 			this.power = 10;
 			this.currentPower = 0;
+			this.Color = Color;
         }
 		
         override public function draw():void 
@@ -35,7 +37,7 @@ package
 				return;
 				
             drawShape = new Shape();
-			drawShape.graphics.lineStyle(1, 0xFFD700);
+			drawShape.graphics.lineStyle(3, this.Color);
 
 			var drad = (currentDirection / 360) * 2 * 3.1415926535;
 			var gravity = +9.8;
