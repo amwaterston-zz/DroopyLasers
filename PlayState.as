@@ -13,6 +13,10 @@ package
 		public var pitch1:Number;
 		public var amp2:Number;
 		public var pitch2:Number;
+		public var laser1:LaserCurve;
+		public var laser2:LaserCurve;
+		//public var bucket1:Bucket;
+		//public var bucket2:Bucket;
 		
 		override public function create():void
 		{
@@ -56,7 +60,7 @@ package
 					1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 );
 				level = new FlxTilemap();
 				level.loadMap(FlxTilemap.arrayToCSV(data,40), FlxTilemap.ImgAuto, 0, 0, FlxTilemap.AUTO);
-				add(level);
+				//add(level);
 				
 				player = new FlxSprite(FlxG.width/2 - 5);
 				player.makeGraphic(10, 12, 0xffaa1111);
@@ -64,22 +68,46 @@ package
 				player.maxVelocity.y = 200;
 				player.acceleration.y = 200;
 				player.drag.x = player.maxVelocity.x * 4;
-				add(player);
+				//add(player);
 				
-				var line = new LaserCurve(new FlxPoint(0, 0), 0, 10);
-				add(line)
+				laser1 = new LaserCurve(new FlxPoint(0, 320));
+				add(laser1);
+				
+				laser2 = new LaserCurve(new FlxPoint(640, 320));
+				add(laser2);
+				laser2.direction = 180;
 		}
 		
 		override public function update():void
 		{
 			player.acceleration.x = 0;
 			if (FlxG.keys.LEFT)
-				player.acceleration.x = -player.maxVelocity.x * 4;
+				laser1.direction += 1;
 			if (FlxG.keys.RIGHT)
-				player.acceleration.x = player.maxVelocity.x * 4;
-			if (FlxG.keys.SPACE && player.isTouching(FlxObject.FLOOR))
-				player.velocity.y = -player.maxVelocity.y / 2;
+				laser1.direction -= 1;
+			if (FlxG.keys.UP)
+				laser1.power += 1;
+			if (FlxG.keys.DOWN)
+				laser1.power -= 1;
 			
+			if (FlxG.keys.A)
+				laser2.direction += 1;
+			if (FlxG.keys.D)
+				laser2.direction -= 1;
+			if (FlxG.keys.W)
+				laser2.power += 1;
+			if (FlxG.keys.S)
+				laser2.power -= 1;
+				
+/*			if (FlxG.keys.D)
+				laser2.location.x += 1;
+			if (FlxG.keys.A)
+				laser2.location.x -= 1;
+			if (FlxG.keys.W)
+				laser2.location.y -= 1;
+			if (FlxG.keys.S)
+				laser2.location.y += 1;*/
+				
 			super.update();
 			
 			FlxG.collide(level, player);
