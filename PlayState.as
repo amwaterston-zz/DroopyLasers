@@ -71,14 +71,14 @@ package
 				player.drag.x = player.maxVelocity.x * 4;
 				//add(player);
 				
-				laser1 = new LaserCurve(new FlxPoint(0, 320));
+				laser1 = new LaserCurve(new FlxPoint(0, 240));
 				add(laser1);
 				
 				bucket1 = new Bucket(FlxG.width/3, 320);
 				add(bucket1);
 				bucket2 = new Bucket(FlxG.width * 2/3, 320);
 				add(bucket2);
-				laser2 = new LaserCurve(new FlxPoint(640, 320));
+				laser2 = new LaserCurve(new FlxPoint(640, 240));
 				add(laser2);
 				laser2.direction = 180;
 				
@@ -117,9 +117,23 @@ package
 			if (FlxG.keys.S)
 				laser2.power -= 1;
 				
-			if (laser1.passesThrough(bucket1.origin))
-				FlxG.log("Whoop");
-				
+			if (laser1.passesNear(new FlxPoint(bucket1.x, bucket1.y)))
+			{
+				bucket1.fullness += 1;
+			}
+			if (laser1.passesNear(new FlxPoint(bucket2.x, bucket2.y)))
+			{
+				bucket2.fullness += 1;
+			}
+			if (laser2.passesNear(new FlxPoint(bucket2.x, bucket2.y)))
+			{
+				bucket2.fullness += 1;
+			}
+			if (laser2.passesNear(new FlxPoint(bucket1.x, bucket1.y)))
+			{
+				bucket1.fullness += 1;
+			}
+			
 			super.update();
 		}
 		
