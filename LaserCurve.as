@@ -14,8 +14,10 @@ package
 		public var currentPower:Number;
 		public var currentDirection:Number;
 
-        function LaserCurve(location:FlxPoint) 
+        function LaserCurve(location:FlxPoint, SimpleGraphic:Class = null) 
 		{
+			super(location.x, location.y);
+			loadGraphic(SimpleGraphic, true, false, 90);
 			this.location = location;
 			this.direction = 0;
 			this.currentDirection = 0;
@@ -49,7 +51,8 @@ package
 	            drawShape.graphics.lineTo(c.x, c.y);
 			}
 			drawShape.graphics.endFill();
-			FlxG.camera.buffer.draw(drawShape);		
+			FlxG.camera.buffer.draw(drawShape);	
+			super.draw();	
         }
 
 		public function passesThrough(point:FlxPoint):Boolean
@@ -64,6 +67,7 @@ package
 		
 		override public function update():void
 		{	
+			
 			if (Math.abs(currentPower - power) < 1.5)
 				currentPower = power;
 			else if (currentPower < power)
@@ -77,6 +81,9 @@ package
 				currentDirection += 5;
 			else if (currentDirection > direction)
 				currentDirection -= 5;
+
+			// figure out the frame to play
+			frame = 6-((currentDirection+45)/90)*6;
 				
 			super.update();
 		}
