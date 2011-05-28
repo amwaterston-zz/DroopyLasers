@@ -19,6 +19,9 @@ package
 		public var bucket1:Bucket;
 		public var bucket2:Bucket;
 		
+		public var score1:FlxText;
+		public var score2:FlxText;
+		
 		[Embed(source="assets/droopyLaser_blue.png")] private var ImgBlueChar:Class;
 		[Embed(source="assets/droopyLaser_red.png")] private var ImgRedChar:Class;
 		
@@ -60,6 +63,12 @@ package
 				FlxG.watch(laser1, "currentPower");
 
 				FlxG.watch(laser2, "currentDirection");
+				
+/*			score1 = new FlxText(100 , 100, 100, "SCORE: 0");
+			add(score1);
+			
+			score2 = new FlxText(500, 100, 100, "SCORE: 0");
+			add(score2);*/
 		}
 		
 		override public function update():void
