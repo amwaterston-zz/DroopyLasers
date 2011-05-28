@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>currentDocument</key>
-	<string>PlayState.as</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -18,76 +16,48 @@
 		</dict>
 		<dict>
 			<key>filename</key>
-			<string>PlayState.as</string>
+			<string>Bucket.as</string>
 			<key>lastUsed</key>
-			<date>2011-05-28T09:10:02Z</date>
+			<date>2011-05-28T14:42:17Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>filename</key>
-			<string>HelloWorld.as</string>
+			<string>PlayState.as</string>
 			<key>lastUsed</key>
-			<date>2011-05-28T09:10:02Z</date>
+			<date>2011-05-28T14:42:16Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>LaserCurve.as</string>
-			<key>selected</key>
-			<true/>
+			<key>lastUsed</key>
+			<date>2011-05-28T14:42:17Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>Line.as</string>
-			<key>selected</key>
-			<true/>
+			<key>lastUsed</key>
+			<date>2011-05-28T14:42:15Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>MonkeyEntity.as</string>
-			<key>selected</key>
-			<true/>
+			<key>lastUsed</key>
+			<date>2011-05-28T14:42:15Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>AAAHelloWorld.as</string>
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
 	<integer>244</integer>
 	<key>metaData</key>
-	<dict>
-		<key>HelloWorld.as</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>1</integer>
-				<key>line</key>
-				<integer>11</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>PlayState.as</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>1</integer>
-				<key>line</key>
-				<integer>1</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-	</dict>
-	<key>openDocuments</key>
-	<array>
-		<string>HelloWorld.as</string>
-		<string>PlayState.as</string>
-	</array>
+	<dict/>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{397, 132}, {1053, 874}}</string>
+	<string>{{614, 177}, {1063, 794}}</string>
 </dict>
 </plist>

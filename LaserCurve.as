@@ -47,7 +47,7 @@ package
 			var c:FlxPoint = new FlxPoint(location.x, location.y);
 			//drawShape.graphics.beginFill(0xFF99FF);
 			drawShape.graphics.moveTo(location.x, location.y);
-			for (var i:int = 0; i < 100; i++)
+			for (var i:int = 0; i < 10; i++)
 			{
 				v.x += a.x;
 				v.y += a.y;
@@ -56,19 +56,37 @@ package
 				//FlxG.log(c.x + ", " + c.y);
 	            drawShape.graphics.lineTo(c.x, c.y);
 			}
-			drawShape.graphics.endFill();
 			FlxG.camera.buffer.draw(drawShape);	
 			super.draw();	
         }
 
-		public function passesThrough(point:FlxPoint):Boolean
+		public function passesNear(point:FlxPoint):Boolean
 		{
+			var drad = (currentDirection / 360) * 2 * 3.1415926535;
+			var gravity = +9.8;
+			var v:FlxPoint = new FlxPoint(Math.cos(drad) * currentPower, Math.sin(drad) * currentPower);
 			var a:FlxPoint = new FlxPoint(0, 1);
-			/*var y:Number = location.y + (a.y * point.x);
-			if (Math.abs(v.y - point.y) < 10)
-				return true;
-			else*/
-				return false;
+			var c:FlxPoint = new FlxPoint(location.x, location.y);
+			var oldc:FlxPoint = new FlxPoint(location.x, location.y);
+			var closest:Number = 10000000;
+			
+			var bline:FlxLine = new FlxLine(point, new FlxPoint(point.x, point.y - 200));
+			
+			for (var i:int = 0; i < 10; i++)
+			{
+				v.x += a.x;
+				v.y += a.y;
+				c.x += v.x;
+				c.y += v.y;
+				
+				var d:Number = Math.sqrt( Math.pow(c.x - point.x, 2) + Math.pow(c.y - point.y, 2));
+				FlxG.log("d: " + d + ", i: " + i)
+				if (d < 10)
+				{
+					return true;
+				}
+			}
+			return false;
 		}
 		
 		override public function update():void
