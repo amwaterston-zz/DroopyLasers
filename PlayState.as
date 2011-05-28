@@ -40,7 +40,7 @@ package
 				player.drag.x = player.maxVelocity.x * 4;
 				//add(player);
 				
-				laser1 = new LaserCurve(new FlxPoint(0, 320), ImgBlueChar);
+				laser1 = new LaserCurve(new FlxPoint(80, 376), ImgBlueChar);
 				add(laser1);
 				
 				bucket1 = new Bucket(FlxG.width/3, 320);

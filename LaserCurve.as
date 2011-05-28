@@ -16,7 +16,7 @@ package
 
         function LaserCurve(location:FlxPoint, SimpleGraphic:Class = null) 
 		{
-			super(location.x, location.y);
+			super(location.x-50, location.y-56);
 			loadGraphic(SimpleGraphic, true, false, 90);
 			this.location = location;
 			this.direction = 0;
