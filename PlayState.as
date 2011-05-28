@@ -19,11 +19,10 @@ package
 		public var bucket1:Bucket;
 		public var bucket2:Bucket;
 		
-		protected const _bloom:uint = 6;	//How much light bloom to have - larger numbers = more
-		protected var _fx:FlxSprite;		//Our helper sprite - basically a mini screen buffer (see below)
 		
 		[Embed(source="assets/droopyLaser_blue.png")] private var ImgBlueChar:Class;
 		[Embed(source="assets/droopyLaser_red.png")] private var ImgRedChar:Class;
+		[Embed(source="assets/background.png")] private var ImgBkg:Class;
 		
 		[Embed(source="assets/gameloop.mp3")] private var SndGameLoop:Class;
 		[Embed(source="assets/menu.mp3")] private var SndMenu:Class;
@@ -34,7 +33,7 @@ package
 		override public function create():void
 		{
 			FlxG.playMusic(SndGameLoop);
-			
+			add(new FlxSprite(0,0, ImgBkg));
 			osc = new OSCConnection("127.0.0.1", 9001);
 			osc.addEventListener(OSCConnectionEvent.OSC_PACKET_IN, oscIn);
 			osc.connect("127.0.0.1", 9001);
@@ -72,16 +71,6 @@ package
 
 				FlxG.watch(laser2, "currentDirection");
 				
-				_fx = new FlxSprite();
-				_fx.makeGraphic(FlxG.width/_bloom,FlxG.height/_bloom,0,true);
-				_fx.setOriginToCorner();	//Zero out the origin so scaling goes from top-left, not from center
-				_fx.scale.x = _bloom;		//Scale it up to be the same size as the screen again
-				_fx.scale.y = _bloom;		//Scale it up to be the same size as the screen again
-				_fx.antialiasing = true;	//Set AA to true for maximum blurry
-				_fx.blend = "screen";		//Set blend mode to "screen" to make the blurred copy transparent and brightening
-				
-				FlxG.camera.screen.scale.x = 1/_bloom;
-				FlxG.camera.screen.scale.y = 1/_bloom;
 				
 		}
 		
@@ -133,8 +122,8 @@ package
 		override public function draw():void
 		{
 			super.draw();
-			_fx.stamp(FlxG.camera.screen);
-			_fx.draw();
+			/*_fx.stamp(FlxG.camera.screen);
+			_fx.draw();*/
 			
 		}
 		public function oscIn(e:OSCConnectionEvent):void
