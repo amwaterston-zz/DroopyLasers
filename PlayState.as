@@ -8,6 +8,8 @@ package
 		public var player:FlxSprite;
 		public var laser1:LaserCurve;
 		public var laser2:LaserCurve;
+		//public var bucket1:Bucket;
+		//public var bucket2:Bucket;
 		
 		override public function create():void
 		{
@@ -46,7 +48,7 @@ package
 					1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 );
 				level = new FlxTilemap();
 				level.loadMap(FlxTilemap.arrayToCSV(data,40), FlxTilemap.ImgAuto, 0, 0, FlxTilemap.AUTO);
-				add(level);
+				//add(level);
 				
 				player = new FlxSprite(FlxG.width/2 - 5);
 				player.makeGraphic(10, 12, 0xffaa1111);
@@ -54,7 +56,7 @@ package
 				player.maxVelocity.y = 200;
 				player.acceleration.y = 200;
 				player.drag.x = player.maxVelocity.x * 4;
-				add(player);
+				//add(player);
 				
 				laser1 = new LaserCurve(new FlxPoint(0, 320));
 				add(laser1);

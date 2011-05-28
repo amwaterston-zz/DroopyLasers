@@ -25,7 +25,7 @@ package
 				return;
 				
             drawShape = new Shape();
-            drawShape.graphics.lineStyle(1, 0x999999);
+			drawShape.graphics.lineStyle(1, 0xFFD700);
 
 			var drad = (direction / 360) * 2 * 3.1415926535;
 			var gravity = +9.8;
@@ -33,7 +33,7 @@ package
 			var a:FlxPoint = new FlxPoint(0, 1);
 			//FlxG.log("START");
 			var c:FlxPoint = new FlxPoint(location.x, location.y);
-			drawShape.graphics.beginFill(0xFF99FF);
+			//drawShape.graphics.beginFill(0xFF99FF);
 			drawShape.graphics.moveTo(location.x, location.y);
 			for (var i:int = 0; i < 100; i++)
 			{
