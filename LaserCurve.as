@@ -55,10 +55,10 @@ package
 		public function passesThrough(point:FlxPoint):Boolean
 		{
 			var a:FlxPoint = new FlxPoint(0, 1);
-			var y:Number = location.y + (a.y * point.x));
+			/*var y:Number = location.y + (a.y * point.x);
 			if (Math.abs(v.y - point.y) < 10)
 				return true;
-			else
+			else*/
 				return false;
 		}
 		
