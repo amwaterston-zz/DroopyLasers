@@ -81,16 +81,24 @@ package
 				laser2 = new LaserCurve(new FlxPoint(640, 320));
 				add(laser2);
 				laser2.direction = 180;
-				FlxG.watch(this, "pitch1");
-				FlxG.watch(this, "amp1");
-				FlxG.watch(this, "pitch2");
-				FlxG.watch(this, "amp2");
 				
+				FlxG.watch(this, "pitch1");
+				FlxG.watch(laser1, "direction");
+				FlxG.watch(laser1, "currentDirection");
+				
+				FlxG.watch(this, "amp1");
+				FlxG.watch(laser1, "power");
+				FlxG.watch(laser1, "currentPower");
 		}
 		
 		override public function update():void
 		{
-			player.acceleration.x = 0;
+			/*laser1.power = 10; //amp1 * 10 + 1;
+			if (amp1 > 0.1)
+			{
+				laser1.direction = pitch1 * 90 + 45;
+			}*/
+			
 			if (FlxG.keys.LEFT)
 				laser1.direction += 1;
 			if (FlxG.keys.RIGHT)
@@ -109,19 +117,12 @@ package
 			if (FlxG.keys.S)
 				laser2.power -= 1;
 				
-/*			if (FlxG.keys.D)
-				laser2.location.x += 1;
-			if (FlxG.keys.A)
-				laser2.location.x -= 1;
-			if (FlxG.keys.W)
-				laser2.location.y -= 1;
-			if (FlxG.keys.S)
-				laser2.location.y += 1;*/
+			if (laser1.passesThrough(bucket1.origin))
+				FlxG.log("Whoop");
 				
 			super.update();
-			
-			FlxG.collide(level, player);
 		}
+		
 		public function oscIn(e:OSCConnectionEvent):void
 		{
 			for (var i:int = 0; i < e.data.messages.length; i++)

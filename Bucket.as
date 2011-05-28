@@ -7,7 +7,7 @@ package
 		public function Bucket(X:int, Y:int)
 		{
 			super(X, Y);
-			makeGraphic(10, 12, 0xffaa1111);
+			makeGraphic(20, 24, 0xffaa1111);
 		}
 	}
 }

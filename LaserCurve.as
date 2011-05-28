@@ -11,12 +11,16 @@ package
 		public var location:FlxPoint;
 		public var direction:Number;
 		public var power:Number;
+		public var currentPower:Number;
+		public var currentDirection:Number;
 
         function LaserCurve(location:FlxPoint) 
 		{
 			this.location = location;
 			this.direction = 0;
+			this.currentDirection = 0;
 			this.power = 10;
+			this.currentPower = 0;
         }
 		
         override public function draw():void 
@@ -27,9 +31,9 @@ package
             drawShape = new Shape();
 			drawShape.graphics.lineStyle(1, 0xFFD700);
 
-			var drad = (direction / 360) * 2 * 3.1415926535;
+			var drad = (currentDirection / 360) * 2 * 3.1415926535;
 			var gravity = +9.8;
-			var v:FlxPoint = new FlxPoint(Math.cos(drad) * power, Math.sin(drad) * power);
+			var v:FlxPoint = new FlxPoint(Math.cos(drad) * currentPower, Math.sin(drad) * currentPower);
 			var a:FlxPoint = new FlxPoint(0, 1);
 			//FlxG.log("START");
 			var c:FlxPoint = new FlxPoint(location.x, location.y);
@@ -51,12 +55,29 @@ package
 		public function passesThrough(point:FlxPoint):Boolean
 		{
 			var a:FlxPoint = new FlxPoint(0, 1);
-			var v:FlxPoint = new FlxPoint(location.x + (a.x * point.x), location.y + (a.y * point.x));
-			return true;
+			var y:Number = location.y + (a.y * point.x));
+			if (Math.abs(v.y - point.y) < 10)
+				return true;
+			else
+				return false;
 		}
 		
 		override public function update():void
-		{
+		{	
+			if (Math.abs(currentPower - power) < 1.5)
+				currentPower = power;
+			else if (currentPower < power)
+				currentPower += 1;
+			else if (currentPower > power)
+				currentPower -= 0.1;
+				
+			if (Math.abs(currentDirection - direction) < 7)
+				currentDirection = direction;
+			else if (currentDirection < direction)
+				currentDirection += 5;
+			else if (currentDirection > direction)
+				currentDirection -= 5;
+				
 			super.update();
 		}
     }
