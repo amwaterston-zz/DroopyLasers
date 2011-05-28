@@ -4,9 +4,10 @@ package
  
 	public class Bucket extends FlxSprite
 	{
-		function Bucket()
+		public function Bucket(X:int, Y:int)
 		{
-			super();
+			super(X, Y);
+			makeGraphic(10, 12, 0xffaa1111);
 		}
 	}
 }

@@ -16,8 +16,8 @@ package
 		public var pitch2:Number;
 		public var laser1:LaserCurve;
 		public var laser2:LaserCurve;
-		//public var bucket1:Bucket;
-		//public var bucket2:Bucket;
+		public var bucket1:Bucket;
+		public var bucket2:Bucket;
 		
 		override public function create():void
 		{
@@ -74,6 +74,10 @@ package
 				laser1 = new LaserCurve(new FlxPoint(0, 320));
 				add(laser1);
 				
+				bucket1 = new Bucket(FlxG.width/3, 320);
+				add(bucket1);
+				bucket2 = new Bucket(FlxG.width * 2/3, 320);
+				add(bucket2);
 				laser2 = new LaserCurve(new FlxPoint(640, 320));
 				add(laser2);
 				laser2.direction = 180;
