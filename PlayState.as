@@ -77,6 +77,11 @@ package
 				laser2 = new LaserCurve(new FlxPoint(640, 320));
 				add(laser2);
 				laser2.direction = 180;
+				FlxG.watch(this, "pitch1");
+				FlxG.watch(this, "amp1");
+				FlxG.watch(this, "pitch2");
+				FlxG.watch(this, "amp2");
+				
 		}
 		
 		override public function update():void
@@ -115,25 +120,25 @@ package
 		}
 		public function oscIn(e:OSCConnectionEvent):void
 		{
-			FlxG.log("osc in");
-			for (var message:OSCMessage in e.data.messages)
+			for (var i:int = 0; i < e.data.messages.length; i++)
 			{
+				var message = e.data.messages[i];
+				FlxG.log(message.name);
 				if(message.name == "/amp"){
 					if(message.getArgumentValue(0) == 1){
-						amp1 = message.getArgumentValue(1);
+						amp1 = message.getArgumentValue(1) as Number;
 					}else{
-						amp2 = message.getArgumentValue(1);
+						amp2 = message.getArgumentValue(1) as Number;
 					}
 				}
 				if(message.name == "/pitch"){
 					if(message.getArgumentValue(0) == 1){
-						pitch1 = message.getArgumentValue(1);
+						pitch1 = message.getArgumentValue(1) as Number;
 					}else{
-						pitch2 = message.getArgumentValue(1);
+						pitch2 = message.getArgumentValue(1) as Number;
 					}
 				}
 			}
-			FlxG.log(e.data.messages[0].name);
 		}
 		private function onConnect(evtEvent:OSCConnectionEvent):void {
 			FlxG.log("connect");
